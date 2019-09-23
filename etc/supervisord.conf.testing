@@ -1,0 +1,37 @@
+[supervisord]
+childlogdir = var/log
+logfile = var/log/supervisord.log
+logfile_maxbytes = 50MB
+logfile_backups = 10
+loglevel = info
+pidfile = var/supervisord.pid
+umask = 022
+nodaemon = false
+nocleanup = false
+startsecs = 10
+startretries = 10
+
+[unix_http_server]
+file = var/supervisor.sock
+chmod = 0700
+
+[supervisorctl]
+serverurl = unix://var/supervisor.sock
+
+[rpcinterface:supervisor]
+supervisor.rpcinterface_factory=supervisor.rpcinterface:make_main_rpcinterface
+
+[program:webserver]
+environment=DJANGO_SETTINGS_MODULE=sample.testing
+command = bin/gunicorn sample.wsgi:application
+	--name sample
+	--workers 1
+	--user=root
+	--group=root
+	--bind=unix:var/sample.sock
+	--log-level=debug
+	--log-file=-
+
+autorestart = true
+stdout_logfile=var/log/webserver-stdout.log
+stderr_logfile=var/log/webserver-stderr.log

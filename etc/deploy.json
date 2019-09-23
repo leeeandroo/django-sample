@@ -1,0 +1,22 @@
+{
+  "deploy": {
+    "appname": "sample",
+    "giturl": "ssh://git@bitbucket.org/user/sample.git"
+  },
+  "testing": {
+    "server": ["dev.django-sample.com"],
+    "user": "root",
+    "port": 21,
+    "basedir": "/home/root/project/testing/{0[deploy][appname]}",
+    "gitbranch": "master",
+    "clone": false
+  },
+  "production": {
+    "server": ["django-sample.com"],
+    "user": "root",
+    "port": 21,
+    "basedir": "/home/root/project/production/{0[deploy][appname]}",
+    "gittag": "1.0.0",
+    "clone": false
+  }
+}
