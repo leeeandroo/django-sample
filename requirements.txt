@@ -2,5 +2,5 @@ Django==3.1.2
 fabric3>=1.13,<1.14
 gunicorn>=19.7.1,<20.0.0
 psycopg2>=2.7.0,<3.0.0
-Pillow==7.2.0
+Pillow==8.1.1
 -e git://github.com/Supervisor/supervisor.git@ad272ce6a3b6a8f967a5a4efa3d9b7e4273c855c#egg=supervisor
